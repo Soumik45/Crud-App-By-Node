@@ -1,0 +1,32 @@
+1. npm init
+2. npm i express dotenv mongoose nodemon
+3. in package.json, inside script
+	"start": "nodemon index.js"
+4. build server in index.js
+
+To get form's data 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+To connect mongodb
+Project->Add network ip->Database->Add cluster
+Then get the db_url= copied_link/database_name
+
+To get something from Form we use 
+req.body.name, req.body.age
+
+const createUser = async (req, res) => {
+  try {
+    const newUser = new User({
+      name: req.body.name, age: Number(req.body.age),
+    });
+    await newUser.save(); //Save in DB
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+req.params.id
+link/abc 			//Here abc is params.id
